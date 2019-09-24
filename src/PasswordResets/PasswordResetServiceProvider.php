@@ -39,7 +39,7 @@ class PasswordResetServiceProvider extends ServiceProvider
             $tokens     = $app['auth.password.tokens'];
             $providers  = [];
             $views      = [];
-            if(!empty($app['config']['auth.multi-auth'])) {
+            if($app['config']['auth.multi-auth']) {
                 foreach($app['config']['auth.multi-auth'] AS $type => $config) {
                     $providers[$type] = $app['auth']->$type()->driver()->getProvider();
                     $views[$type]     = isset($config['email']) ? $config['email'] : $app['config']['auth.password.email'];
